@@ -1,0 +1,29 @@
+#!/bin/sh
+
+##
+# Print the brew cellar path and version number.
+#
+# Syntax:
+#
+#     brew-cellar-version <formula>
+#
+# Example:
+#
+#     $ brew-cellar-version node
+#     /opt/homebrew/Cellar/node/19.3.0
+#
+# Tracking:
+#
+# * Command: brew-cellar-version
+# * Version: 1.0.0
+# * Created: 2023-01-03T18:39:42Z
+# * Updated: 2023-01-03T18:39:42Z
+# * Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
+# * License: BSD, MIT, GPL, or contact us for more info
+##
+
+set -euf
+formula="$1"
+cellar=$(brew --cellar "$formula")
+version=$(brew list --versions "$formula" | head -1 | awk '{print $2}')
+printf %s\\n "$cellar/$version"
